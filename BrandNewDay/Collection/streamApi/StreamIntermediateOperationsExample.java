@@ -1,6 +1,20 @@
 package streamApi;
 import java.util.*;
 
+
+// TERMINAL OPERATIONS AND INTERMEDIATE OPERATIONS:
+/*
+ * Unless and until terminal operations are called the streams
+ * are not get started.
+ * If you want to start the stream you must call the terminal operations.
+ * for each(Consumer) collect allMatch anyMatch nonMatch (Predicate) etc.. count it return a long
+ * and some intermediate operations are
+ * filter(Predicate) map flatMap sort, map,  etc..
+ * peek is used in debugging it is an 
+ * it uses consumer operations 
+ * THE DIFFRENCE BETWEEN FOR EACH AND PEEK
+ */
+
 public class StreamIntermediateOperationsExample {
     public static void main(String[] args) {   
        List<Student> list=new ArrayList<>();
@@ -16,7 +30,7 @@ public class StreamIntermediateOperationsExample {
     	   s.marks>35)
     		   .forEach((s)->{
     			   System.out.println(s.name);
-    		   });
+       });
       
        }
       
