@@ -1,5 +1,7 @@
+
 # Java compiled files
 *.class
+**/bin/
 
 # Eclipse
 .classpath
