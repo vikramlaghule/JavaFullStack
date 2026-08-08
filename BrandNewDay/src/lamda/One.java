@@ -7,11 +7,15 @@ package lamda;
  * 
  */
 public class One {
-	I_run i = ()->{
-		System.out.println("Hello");
-		return 0;
-	};
+	
+	public static void main(String[] args)
+	{
+		 I_run<Integer> i = (a,b)->(a+b);
+		System.out.println( i.run(15, 687));
+		 
+		
+	}
 }
-interface I_run{
-	int run();
+interface I_run<A>{
+	A run(A a ,A b);
 	}

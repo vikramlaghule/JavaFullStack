@@ -13,10 +13,10 @@ public class ClassCastException {
 		System.out.println(std1.mob);		
 	}
 }
-class Student implements Comparable{
+class Student implements Comparable<Object>{
 	int id;
 	String name;
-	static int mob=10;
+	int mob=10;
 
 	@Override
 	public int compareTo(Object o) {
