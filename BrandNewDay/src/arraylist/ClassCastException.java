@@ -1,3 +1,4 @@
+package arraylist;
 
 import java.util.LinkedHashSet;
 
@@ -13,14 +14,8 @@ public class ClassCastException {
 		System.out.println(std1.mob);		
 	}
 }
-class Student implements Comparable<Object>{
+class Student {
 	int id;
 	String name;
 	int mob=10;
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
