@@ -1,6 +1,6 @@
 package streamApi;
 
-import java.util.Hashtable;
+
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -59,15 +59,8 @@ public class PredicateConsumer {
 			System.out.println(s.length());
 			System.out.println("Consumer interface accept method demo");};
 		con.accept("s");
-		
-		I_run<String, String,Integer> i = (t,a)->(t.length()+a.length());
-		System.out.println(i.run("Ab", "ab"));
-		 Hashtable<Integer,String> hashtable = new Hashtable<>();
+	
 	}
-}
-@FunctionalInterface
-interface I_run<T,A,R>{
-	R run(T t, A a);
 }
 
 
