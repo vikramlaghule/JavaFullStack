@@ -11,6 +11,7 @@ public class ReflectionApi
 	 * 
 	 * .getClass()
 	 * class.forname
+	 *  Reflection api is used to modify the behhaviour of 
 	 */
 	
 	public static void main(String[] args) throws Exception {
@@ -25,13 +26,16 @@ public class ReflectionApi
 		for(Constructor<?> c:a) {
 			System.out.println(c);
 		}
-		a[0].setAccessible(true);
+//		a[0].setAccessible(true);       
+//	       a[0].newInstance("Vishal");
 	       
-	       a[0].newInstance("Vishal");
+	       Animal b = new Dog();
+	       b.sound();
+
 	}
 
 }
-class Vikram{
+class Vikram extends Thread{
 	String name;
 	public Vikram() {
 		super();
@@ -41,4 +45,19 @@ class Vikram{
 		System.out.println("Object created......");
 	}
 	
+}
+class Animal {
+    static void sound() {
+        System.out.println("Animal sound");
+    }
+    int add(int a, int b) {
+        return a + b ;
+    }
+}
+
+class Dog extends Animal {
+	 int add(int a, int b) {
+        return a + b;
+    }
+
 }
