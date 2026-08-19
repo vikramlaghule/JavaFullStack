@@ -1,4 +1,4 @@
-package collection;
+package set;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ public class List1 {
 	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 		String ab=new String("abc");
+		System.out.println(ab);
 		List<Integer> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			list.add(null);
