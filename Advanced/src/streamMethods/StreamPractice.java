@@ -1,6 +1,7 @@
 package streamMethods;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -48,7 +49,8 @@ class Student1{
 	}
 }
 class Manish<T>{
+    
 }
-class Ans extends Manish {
+class Ans extends Manish<Integer> {
 	
 }

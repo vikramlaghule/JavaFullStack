@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            align-items: center;
+            display: flex;
+        }
+        .button{
+            align-items: center;
+        }
+        #demo{
+            
+        }
+        .parent-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  gap: 20px;               /* Adds space between the two divs */
+}
+
+    </style>
+</head>
+<body>
+    <div class="parent-container ">  
+     <div>
+
+    <button onclick="alert('Hey idiot')">click me</button>
+    </div>
+
+    <div>
+        <h2>
+        javascript code inside the html 
+    </h2>
+    <h3 id="demo" style="color: rgb(87, 209, 87);">Geek for geeks</h3>
+
+    <button onclick="change()">Fuck me</button>
+
+    </div>
+    </div>
+
+    <script>
+        let t=document.getElementById("demo");
+
+        function change(){
+            t.innerText="Hey there";
+        };
+
+    </script>
+</body>
+</html>

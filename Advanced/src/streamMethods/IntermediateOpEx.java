@@ -15,7 +15,7 @@ import java.util.*;
  * THE DIFFRENCE BETWEEN FOR EACH AND PEEK
  */
 
-public class StreamIntermediateOperationsExample {
+public class IntermediateOpEx {
     public static void main(String[] args) {   
        List<Student> list=new ArrayList<>();
        list.add(new Student(35,"vikram"));
