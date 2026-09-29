@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.upi.googlePay.Entity.Student;
+import com.upi.googlePay.Exception.StdudentWithIDNotFound;
 import com.upi.googlePay.Repository.StudentRepository;
 
 @Service
@@ -34,5 +35,27 @@ public class StudentService {
 	{
 		return studentRepository.findById(id).get();
 	}
-	
+	   
+    public int updadtename(String name, int id) throws StdudentWithIDNotFound
+    {
+    		if(studentRepository.updateName(name, id)==1)
+    		{
+    			throw new StdudentWithIDNotFound("Are bhai aaisa koi id nahi hai");
+    		}
+        return studentRepository.updateName(name, id);
+    }
+   
+   
+    public Student getbyname(String name)
+    {
+        return studentRepository.getbyname(name);
+    }
+    public boolean deleteStudentById(int id)
+    {
+       
+    	studentRepository.deleteById(id);
+       
+        return true;
+    }
+    
 }
