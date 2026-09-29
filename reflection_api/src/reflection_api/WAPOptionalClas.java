@@ -1,4 +1,6 @@
-package src.reflection_api;
+package reflection_api;
+
+import java.util.Optional;
 
 public class WAPOptionalClas {
 	public static void main(String[] args) {
@@ -16,7 +18,6 @@ public class WAPOptionalClas {
 		
 		Optional<Integer> ops=op1.map((i)->(i.length()));
 		
-		op1.
 		
 	}
 }
