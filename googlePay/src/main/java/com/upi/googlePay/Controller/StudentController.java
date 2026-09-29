@@ -3,13 +3,16 @@ package com.upi.googlePay.Controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.upi.googlePay.Entity.Student;
+import com.upi.googlePay.Exception.StdudentWithIDNotFound;
 import com.upi.googlePay.Service.StudentService;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -68,6 +71,25 @@ public class StudentController {
 	{
 		return service.findById(id);
 	}
+	  @DeleteMapping("/delete-id/{id}")
+	    public  boolean delete(@PathVariable(value="id") int id)
+	    {
+	        return service.deleteStudentById(id);
+	    }
+	   
+	   
+	    @PutMapping("/update/{name}/{id}")
+	    public int update(@PathVariable(value="name")String name,@PathVariable(value="id")int id) throws StdudentWithIDNotFound
+	    {
+	       
+	        return service.updadtename(name, id);
+	    }
+	   
+	    @GetMapping("/get-by-name/{name}")
+	    public Student getname(@PathVariable String name)
+	    {
+	        return service.getbyname(name);
+	    }
 	
 
 }
