@@ -1,14 +1,19 @@
 package com.upi.googlePay.Entity;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 
 @Entity
 public class Student {
 	@Id
 	private int id;
+	@Length(min = 2, max=30, message = "name chukla reee")
 	private String firstname;
 	private String lastname;
+	@Email(message = "enter a valid email")
 	private String email;
 	public Student()
 	{

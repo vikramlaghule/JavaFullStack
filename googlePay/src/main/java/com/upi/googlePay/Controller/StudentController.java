@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.upi.googlePay.Entity.Student;
 import com.upi.googlePay.Exception.StdudentWithIDNotFound;
 import com.upi.googlePay.Service.StudentService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -54,7 +57,7 @@ public class StudentController {
 	}	
 	
 	@PostMapping("/add-student")
-	public String addStudent(@RequestBody Student stud) throws InterruptedException
+	public String addStudent(@Valid @RequestBody Student stud) throws InterruptedException
 	{
 		
 		return service.addStudentService(stud);
