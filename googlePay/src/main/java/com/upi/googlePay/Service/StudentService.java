@@ -58,4 +58,11 @@ public class StudentService {
         return true;
     }
     
+    public String updatestTeach(int tid,int id)
+    {
+    		studentRepository.updatestTeach(tid, id);
+		return "teacher updated successfully" ;
+    	
+    }
+    
 }

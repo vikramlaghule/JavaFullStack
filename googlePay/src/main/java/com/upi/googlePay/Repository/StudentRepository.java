@@ -20,5 +20,12 @@ public interface StudentRepository extends JpaRepository<Student,Integer>{
 	   
 	   @Query(value="select * from student where firstname= :nm;",nativeQuery=true)
 	   public Student getbyname(@Param(value="nm") String nm);
+	   
+
+	   @Modifying
+	   @Transactional
+	   @Query(value="update student set tid= :tid where id= :id;",nativeQuery=true)
+	   public int updatestTeach(@Param(value="tid") int tid,@Param(value="id") int id);
+	   
 	
 }

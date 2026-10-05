@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 
 @Entity
@@ -15,6 +17,9 @@ public class Student {
 	private String lastname;
 	@Email(message = "enter a valid email")
 	private String email;
+	@ManyToOne
+	@JoinColumn(name = "tid")
+	private Teachers teacher;
 	public Student()
 	{
 		
@@ -43,9 +48,11 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "]";
+	public Teachers getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teachers teacher) {
+		this.teacher = teacher;
 	}
 	
 }

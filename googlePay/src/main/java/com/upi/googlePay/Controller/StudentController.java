@@ -92,8 +92,14 @@ public class StudentController {
 	    public Student getname(@PathVariable String name)
 	    {
 	        return service.getbyname(name);
+	        
 	    }
-	
+	    
+	    @PutMapping("/updatIdStudent/{tid}/{id}")
+	    public String updatIdStudent(@PathVariable int tid, int id)
+	    {
+	    return service.updatestTeach(tid, id);
+	    }
 
 }
 
