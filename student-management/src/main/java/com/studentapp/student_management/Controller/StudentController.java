@@ -1,41 +1,53 @@
 package com.studentapp.student_management.Controller;
 
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.studentapp.student_management.Dto.StudentDto;
+import com.studentapp.student_management.Entity.Student;
+import com.studentapp.student_management.Services.StudentService;
 
 @RestController
+@RequestMapping("/s")
 public class StudentController {
 
-	@PostMapping("/test")
-	public String getStarted(@RequestParam int id)
+	private StudentService service;
+	
+	public StudentController(StudentService service)
 	{
-		return "Hello";
-		
+		this.service=service;
 	}
-	@PostMapping("/test2/{id}")
-	public String requestpara(@PathVariable int id)
+	
+@PostMapping("/add-student")
+public String addStudent(@RequestBody Student stud)
+{
+	return service.addStudent(stud);
+}
+
+	@GetMapping("/getAll-student")
+	public List<Student> getAllTeacher()
 	{
-		return null;
-		
+		return service.getAllStudent();
 	}
-	@GetMapping("/test3")
-	public String requestbody(@RequestBody Student stud)
+	
+	@GetMapping("/get-students")
+	public List<StudentDto> getstudent()
 	{
+		List<Student> st=service.getAllStudent();
 		
+		return st.stream().map(s->{
+			StudentDto dt=new StudentDto();
+			dt.setStudentname(s.getFirst_name());
+			dt.setTeachername(s.getTeach().getTeachername());
+			return dt;
+		}).toList();
 		
-		return stud.fname +":"+stud.lname;
 		
 	}
 	
-}
-class Student{
-	int id;
-	String fname;
-	String lname;
 }
