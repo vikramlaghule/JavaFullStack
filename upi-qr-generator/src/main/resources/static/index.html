@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI QR Generator</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+        .container {
+            width: min(460px, calc(100% - 32px));
+            margin: 50px auto;
+        }
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.08);
+        }
+        h1 { margin-top: 0; }
+        .upi {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+        }
+        input:focus { border-color: #2563eb; }
+        button {
+            width: 100%;
+            border: 0;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+        }
+        button:hover { background: #1d4ed8; }
+        #result {
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+        }
+        #qr {
+            width: 300px;
+            max-width: 100%;
+            border: 8px solid white;
+        }
+        .amount {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        .download {
+            display: inline-block;
+            text-decoration: none;
+            background: #111827;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 9px;
+            margin-top: 8px;
+        }
+        .error { color: #dc2626; margin-top: 12px; }
+        .note { font-size: 12px; color: #64748b; margin-top: 20px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>UPI Payment QR</h1>
+
+        <div class="upi">
+            Receiving UPI ID: <strong>hrlaghule-9@okaxis</strong>
+        </div>
+
+        <label for="amount">Amount (₹)</label>
+        <input id="amount" type="number" min="1" step="0.01"
+               placeholder="Enter amount, e.g. 500">
+
+        <button onclick="generateQr()">Generate QR</button>
+
+        <div id="error" class="error"></div>
+
+        <div id="result">
+            <div class="amount" id="displayAmount"></div>
+            <img id="qr" alt="UPI QR Code">
+            <br>
+            <a id="download" class="download" download="upi-payment-qr.png">
+                Download QR
+            </a>
+        </div>
+
+        <div class="note">
+            Scan this QR with a compatible UPI app. Always verify the
+            recipient and amount before confirming a payment. Never share
+            your UPI PIN or OTP.
+        </div>
+    </div>
+</div>
+
+<script>
+async function generateQr() {
+    const amountInput = document.getElementById('amount');
+    const error = document.getElementById('error');
+    const result = document.getElementById('result');
+    const qr = document.getElementById('qr');
+    const download = document.getElementById('download');
+    const displayAmount = document.getElementById('displayAmount');
+
+    const amount = Number(amountInput.value);
+
+    error.textContent = '';
+    result.style.display = 'none';
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        error.textContent = 'Please enter a valid amount greater than ₹0.';
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            '/api/qr?amount=' + encodeURIComponent(amount)
+        );
+
+        if (!response.ok) {
+            throw new Error('Could not generate QR.');
+        }
+
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+
+        qr.src = imageUrl;
+        download.href = imageUrl;
+        displayAmount.textContent =
+            'Receive ₹' + amount.toFixed(2);
+
+        result.style.display = 'block';
+    } catch (e) {
+        error.textContent = 'Failed to generate QR. Please try again.';
+    }
+}
+</script>
+</body>
+</html>
