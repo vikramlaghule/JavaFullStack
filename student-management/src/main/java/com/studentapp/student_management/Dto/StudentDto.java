@@ -1,20 +1,64 @@
 package com.studentapp.student_management.Dto;
 
-public class StudentDto {
+import jakarta.validation.constraints.Email;
 
-	String studentname;
-	String teachername;
-	public String getStudentname() {
-		return studentname;
+public class StudentDto {
+	
+	private Long id;
+	private String name;
+	@Email
+	private String email;
+	private String course;
+	private int age;
+	private String city;
+	private double percentage;
+	
+	
+	
+	
+	public Long getId() {
+		return id;
 	}
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getTeachername() {
-		return teachername;
+	public String getName() {
+		return name;
 	}
-	public void setTeachername(String teachername) {
-		this.teachername = teachername;
+	public void setName(String name) {
+		this.name = name;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public double getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
+	}
+	
+	
 	
 }

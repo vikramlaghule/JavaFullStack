@@ -1,54 +1,72 @@
 
 package com.studentapp.student_management.Entity;
 
-import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+
 
 @Entity
 public class Student {
+	
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	@Length(min=2, max=30, message = "Enter a valid first_name")
-	private String first_name;
-	@Length(min=2, max=30, message = "Enter a valid last_name")
-	private String last_name;
-	@Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be exactly 10 digits")
-	private String mobileNumber;
-	@JoinColumn(name = "teacherid")
-	@ManyToOne
-	private Teacher teach;
-	public int getId() {
+    private long id;
+	@Column(nullable = false)
+	private String name;
+	@Column(unique = true,nullable = false)
+	private String email;
+	@Column(nullable = false)
+	private String course;
+	@Column(nullable = false)
+	private int age;
+	@Column(nullable = false)
+	private String city;
+	@Column(nullable = false)
+	private double percentage;
+	
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirst_name() {
-		return first_name;
+	public String getName() {
+		return name;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getEmail() {
+		return email;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getMobileNumber() {
-		return mobileNumber;
+	public String getCourse() {
+		return course;
 	}
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+	public void setCourse(String course) {
+		this.course = course;
 	}
-	public Teacher getTeach() {
-		return teach;
+	public int getAge() {
+		return age;
 	}
-	public void setTeach(Teacher teach) {
-		this.teach = teach;
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public double getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
 	}
 	
 	
