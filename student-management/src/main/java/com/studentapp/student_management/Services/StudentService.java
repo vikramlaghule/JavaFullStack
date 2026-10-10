@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.studentapp.student_management.Dto.StudentDto;
 import com.studentapp.student_management.Entity.Student;
 import com.studentapp.student_management.Repository.StudentRepo;
 
@@ -16,11 +17,27 @@ public class StudentService {
 	{
 		this.repo=repo;
 	}
-	public String addStudent(Student stud)
+	
+	
+	public StudentDto addStudent(Student stud)
 	{
-		repo.save(stud);
-		return "student added successfully "+stud.getFirst_name()  ;
+		
+		Student st=repo.save(stud);
+		
+		StudentDto s=new StudentDto();
+		
+		s.setId(st.getId());
+		s.setName(st.getName());
+		s.setEmail(st.getEmail());
+		s.setCourse(st.getCourse());
+		s.setAge(st.getAge());
+		s.setCity(st.getCity());
+		s.setPercentage(st.getPercentage());
+		
+		
+		return s;
 	}
+	
 	public List<Student> getAllStudent()
 	{
 		

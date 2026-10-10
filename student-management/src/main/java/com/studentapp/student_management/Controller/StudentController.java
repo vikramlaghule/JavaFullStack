@@ -13,7 +13,7 @@ import com.studentapp.student_management.Entity.Student;
 import com.studentapp.student_management.Services.StudentService;
 
 @RestController
-@RequestMapping("/s")
+@RequestMapping("/student")
 public class StudentController {
 
 	private StudentService service;
@@ -23,11 +23,20 @@ public class StudentController {
 		this.service=service;
 	}
 	
-@PostMapping("/add-student")
-public String addStudent(@RequestBody Student stud)
-{
-	return service.addStudent(stud);
-}
+	@PostMapping("/add-student")
+	public StudentDto addStudent(@RequestBody StudentDto stud)
+	{
+		
+		Student st=new Student();
+		st.setName(stud.getName());
+		st.setEmail(stud.getEmail());
+		st.setCourse(stud.getCourse());
+		st.setAge(stud.getAge());
+		st.setCity(stud.getCity());
+		st.setPercentage(stud.getPercentage());
+		
+		return service.addStudent(st);
+	}
 
 	@GetMapping("/getAll-student")
 	public List<Student> getAllTeacher()
@@ -42,8 +51,7 @@ public String addStudent(@RequestBody Student stud)
 		
 		return st.stream().map(s->{
 			StudentDto dt=new StudentDto();
-			dt.setStudentname(s.getFirst_name());
-			dt.setTeachername(s.getTeach().getTeachername());
+			dt.setName(s.getName());
 			return dt;
 		}).toList();
 		
