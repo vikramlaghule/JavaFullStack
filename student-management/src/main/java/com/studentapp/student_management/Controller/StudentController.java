@@ -38,24 +38,30 @@ public class StudentController {
 		return service.addStudent(st);
 	}
 
-	@GetMapping("/getAll-student")
-	public List<Student> getAllTeacher()
-	{
-		return service.getAllStudent();
-	}
+	
 	
 	@GetMapping("/get-students")
 	public List<StudentDto> getstudent()
 	{
-		List<Student> st=service.getAllStudent();
-		
-		return st.stream().map(s->{
-			StudentDto dt=new StudentDto();
-			dt.setName(s.getName());
-			return dt;
-		}).toList();
-		
-		
+	    List<Student> st = service.getAllStudent();
+
+	    return st.stream().map(s -> {
+
+	        StudentDto dt = new StudentDto();
+
+	        dt.setName(s.getName());
+	        dt.setEmail(s.getEmail());
+	        dt.setCourse(s.getCourse());
+	        dt.setAge(s.getAge());
+	        dt.setCity(s.getCity());
+	        dt.setPercentage(s.getPercentage());
+
+	        return dt;
+
+	    }).toList();
+	}
+	
+
 	}
 	
 }
