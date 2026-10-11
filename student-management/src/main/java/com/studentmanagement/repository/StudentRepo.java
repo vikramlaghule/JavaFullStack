@@ -1,9 +1,9 @@
-package com.studentapp.student_management.Repository;
+package com.studentmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.studentapp.student_management.Entity.Student;
+import com.studentmanagement.entity.Student;
 
 @Repository
 public interface StudentRepo extends JpaRepository<Student, Integer> {

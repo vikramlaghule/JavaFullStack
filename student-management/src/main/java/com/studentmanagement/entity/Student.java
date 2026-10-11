@@ -1,25 +1,35 @@
-package com.studentapp.student_management.Dto;
 
-import jakarta.validation.constraints.Email;
+package com.studentmanagement.entity;
 
-public class StudentDto {
+
+import jakarta.persistence.*;
+
+
+@Entity
+public class Student {
 	
-	private Long id;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+	@Column(nullable = false)
 	private String name;
-	@Email
+	@Column(unique = true,nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String course;
+	@Column(nullable = false)
 	private int age;
+	@Column(nullable = false)
 	private String city;
+	@Column(nullable = false)
 	private double percentage;
 	
 	
-	
-	
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -58,7 +68,6 @@ public class StudentDto {
 	public void setPercentage(double percentage) {
 		this.percentage = percentage;
 	}
-	
 	
 	
 }

@@ -1,16 +1,18 @@
-package com.studentapp.student_management.Controller;
+package com.studentmanagement.controller;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studentapp.student_management.Dto.StudentDto;
-import com.studentapp.student_management.Entity.Student;
-import com.studentapp.student_management.Services.StudentService;
+import com.studentmanagement.dto.StudentDto;
+import com.studentmanagement.entity.Student;
+import com.studentmanagement.exception.StudentNotException;
+import com.studentmanagement.service.StudentService;
 
 @RestController
 @RequestMapping("/student")
@@ -23,6 +25,7 @@ public class StudentController {
 		this.service=service;
 	}
 	
+	//1.add student
 	@PostMapping("/add-student")
 	public StudentDto addStudent(@RequestBody StudentDto stud)
 	{
@@ -36,10 +39,11 @@ public class StudentController {
 		st.setPercentage(stud.getPercentage());
 		
 		return service.addStudent(st);
+		
 	}
 
 	
-	
+	//2.get all students
 	@GetMapping("/get-students")
 	public List<StudentDto> getstudent()
 	{
@@ -57,11 +61,20 @@ public class StudentController {
 	        dt.setPercentage(s.getPercentage());
 
 	        return dt;
-
 	    }).toList();
 	}
 	
-
+	
+	//3. get students by id.
+	@GetMapping("/getBy-Id{id}")
+	public StudentDto getById(@PathVariable(value="id") int id) throws StudentNotException
+	{
+		return service.getById(id);
 	}
 	
-}
+	
+	
+	
+}	
+	
+

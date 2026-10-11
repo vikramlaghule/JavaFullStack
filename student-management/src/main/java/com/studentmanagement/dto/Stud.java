@@ -1,4 +1,4 @@
-package com.studentapp.student_management.Dto;
+package com.studentmanagement.dto;
 
 
 public class Stud {
