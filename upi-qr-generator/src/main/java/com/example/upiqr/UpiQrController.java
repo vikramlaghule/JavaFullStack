@@ -19,7 +19,7 @@ import java.util.Map;
 public class UpiQrController {
 
     // Change these values if needed.
-    private static final String UPI_ID = "hrlaghule-9@okaxis";
+    private static final String UPI_ID = "9021492414@kotakbank";
     private static final String PAYEE_NAME = "Recipient";
 
     @GetMapping(produces = MediaType.IMAGE_PNG_VALUE)
