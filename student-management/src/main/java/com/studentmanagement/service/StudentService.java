@@ -1,8 +1,13 @@
 package com.studentmanagement.service;
 
+
+
 import java.util.List;
 import java.util.Optional;
-
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.studentmanagement.dto.StudentDto;
@@ -48,7 +53,7 @@ public class StudentService {
 	
 
 	// 3.Get by ID
-	public StudentDto getById(int id) throws StudentNotException
+	public StudentDto getById(Long id) throws StudentNotException
 	{
 	    Optional<Student> st = repo.findById(id);
 
@@ -62,7 +67,7 @@ public class StudentService {
 	        Student s = st.get();
 
 	        StudentDto dt = new StudentDto();
-
+	        dt.setId(s.getId());
 	        dt.setName(s.getName());
 	        dt.setEmail(s.getEmail());
 	        dt.setCourse(s.getCourse());
@@ -75,7 +80,7 @@ public class StudentService {
 	}
 	
 	//4. Update Student
-	public String updateStudent(int id,Student st) throws StudentNotException
+	public String updateStudent(Long id,Student st) throws StudentNotException
 	{
 		Optional<Student> student = repo.findById(id);
 
@@ -88,21 +93,23 @@ public class StudentService {
 	    }
 	    else
 	    {
-	    	s.setId(st.getId());
 			s.setName(st.getName());
 			s.setEmail(st.getEmail());
 			s.setCourse(st.getCourse());
 			s.setAge(st.getAge());
 			s.setCity(st.getCity());
 			s.setPercentage(st.getPercentage());
+			
+			repo.save(s);
+			return "Student updated successfully";
 	    }
-		return "Student updated successfully";
+		
 	}
 	
 	
 	
 	//5. Delete Student
-	public String deleteStudent(int id) throws StudentNotException
+	public String deleteStudent(Long id) throws StudentNotException
 	{
 	
 	 Student student = repo.findById(id)
@@ -116,6 +123,16 @@ public class StudentService {
 	
 	
 	
+	//Using pagination getting student 
 	
+	
+	public Page<Student> getpages()
+	{
+		Sort sort=Sort.by("city");
+		
+		  Pageable pageable=PageRequest.of(1, 6,sort);
+		  
+		  return repo.findAll(pageable);
+	}
 	
 }

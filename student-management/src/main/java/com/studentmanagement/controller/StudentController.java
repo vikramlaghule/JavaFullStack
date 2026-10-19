@@ -2,9 +2,11 @@ package com.studentmanagement.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +54,7 @@ public class StudentController {
 	    return st.stream().map(s -> {
 
 	        StudentDto dt = new StudentDto();
-
+	        dt.setId(s.getId());
 	        dt.setName(s.getName());
 	        dt.setEmail(s.getEmail());
 	        dt.setCourse(s.getCourse());
@@ -67,13 +69,33 @@ public class StudentController {
 	
 	//3. get students by id.
 	@GetMapping("/getBy-Id{id}")
-	public StudentDto getById(@PathVariable(value="id") int id) throws StudentNotException
+	public StudentDto getById(@PathVariable(value="id") Long id) throws StudentNotException
 	{
 		return service.getById(id);
 	}
 	
+	@PutMapping("/updateStudent{id}")
+	public String updateStudent(@PathVariable (value="id") Long id, @RequestBody StudentDto stud) throws StudentNotException
+	{
+		Student st=new Student();
+		st.setName(stud.getName());
+		st.setEmail(stud.getEmail());
+		st.setCourse(stud.getCourse());
+		st.setAge(stud.getAge());
+		st.setCity(stud.getCity());
+		st.setPercentage(stud.getPercentage());
+		 
+		return service.updateStudent(id, st);
 	
+	}
 	
+	//
+	
+	@GetMapping("/get-pages")
+	public Page<Student> getPages()
+	{
+		return service.getpages();
+	}
 	
 }	
 	
