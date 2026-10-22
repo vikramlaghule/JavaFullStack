@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+</head>
+<body>
+
+<h1>Customer List</h1>
+
+<button onclick="getCustomers()">Get Customers</button>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody id="customerTable"></tbody>
+</table>
+
+<script>
+    async function getCustomers() {
+        try {
+            const response = await fetch('/get-customers');
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch customers');
+            }
+
+            const customers = await response.json();
+            const table = document.getElementById('customerTable');
+
+            table.innerHTML = '';
+
+            customers.forEach(customer => {
+                const row = document.createElement('tr');
+
+                [customer.name, customer.mobno, customer.mail].forEach(value => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value ?? '';
+                    row.appendChild(cell);
+                });
+
+                table.appendChild(row);
+            });
+
+        } catch (error) {
+            console.error(error);
+            alert('Unable to retrieve customers.');
+        }
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Login</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="lg"><fo``rm class="card login" method="post" action="/login">
+<svg viewBox="0 0 120 50" width="120"><rect x="2" y="6" width="70" height="30" rx="3" fill="#c2410c"/><text x="9" y="26" fill="#fff" font-size="12" font-weight="700">GANESH</text><path d="M74 15h22l12 13v8H74z" fill="#555"/><rect x="82" y="19" width="12" height="9" fill="#bfe3ff"/><circle cx="24" cy="39" r="7" fill="#222"/><circle cx="90" cy="39" r="7" fill="#222"/></svg>
+<h2>Employee Login</h2><div id="e" class="err" style="display:none">Wrong username or password</div>
+<label>Username</label><input name="username" required autofocus><label>Password</label><input name="password" type="password" required>
+<button class="p" style="width:100%;margin-top:16px">Login</button></form>
+<script>if(location.search.includes('error'))document.getElementById('e').style.display='block'</script></body></html>
