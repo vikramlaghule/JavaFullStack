@@ -8,14 +8,14 @@ public class One {
 	InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		 Class<?> c=Student.class;//1
-		
+
 		 Student sst=new Student();
 		 Class<?> g=sst.getClass();//2
 		 Class<?> t	=Class.forName("reflectionApi.Student");
 		 
 		 Constructor<?>[]	con=	t.getDeclaredConstructors();
 		 
-		 for(Constructor<?> c: con)
+		 for(Constructor<?> d: con)
 		 {
 			 System.out.println(c);
 		 }
