@@ -8,14 +8,15 @@ public class Test {
     	int peter=4;
     	for(int i=1;i<=100;i++)
     	{
-    		int solvedBypetr=i*john;
-    		int solvedByJohn=0;
+    		
+    		int solvedByJohn=i*john;
+    		int solvedBypetr=0;
     		if(i>3)
     		{
-    			 solvedByJohn=(i-3)*peter;
+    			solvedBypetr=(i-3)*peter;
     		}
     		
-    		if(solvedBypetr<solvedByJohn)
+    		if(solvedBypetr>solvedByJohn)
     		{
     			
     	        System.out.println("Peter overtakes on day: " + i);
@@ -23,6 +24,8 @@ public class Test {
     			break;
     		}
     	}
+    	
+   
     	
     	
     }
