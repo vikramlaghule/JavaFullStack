@@ -31,7 +31,7 @@ public class SchoolController {
     	return service.add(school);
     }
     
-    @GetMapping("get")
+    @GetMapping("/get")
     public List<School> getAll()
     {
     		return service.getAll();
