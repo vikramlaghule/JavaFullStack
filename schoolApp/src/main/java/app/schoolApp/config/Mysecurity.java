@@ -19,7 +19,8 @@ public class Mysecurity {
     SecurityFilterChain mysecuity2(HttpSecurity security)
 	{
 	return	security.csrf(s->{s.disable();}).authorizeHttpRequests(i->{
-			i.requestMatchers(HttpMethod.POST).permitAll().
+			i.requestMatchers(HttpMethod.POST).
+			permitAll().
 			anyRequest().authenticated();
 		}).httpBasic(i->{}).build();
 	}
